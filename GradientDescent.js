@@ -15,18 +15,15 @@ function setup() {
 }
 
 function gradientDescent() {
-  var learning_rate = 0.045;
+    var learning_rate = 0.05;
     for (var i = 0; i < data.length; i++) {
-      var x = data[i].x;
-      var y = data[i].y;
-
-      var guess = m * x + b;
-      var error = y - guess;
-
-      m += m + error * x * learning_rate;
-      b += b + error * learning_rate;
-
-  }
+        var x = data[i].x;
+        var y = data[i].y;
+        var guess = m * x + b;
+        var error = y - guess;
+        m = m + error * x * learning_rate;
+        b = b + error * learning_rate;
+    }
 }
 
 function drawLine() {
@@ -52,18 +49,18 @@ function mousePressed() {
     data.push(point);
 }
 
- function draw() {
-     background(51);
-     for (var i = 0; i < data.length; i++) {
-         var x = map(data[i].x, 0, 1, 0, width);
-         var y = map(data[i].y, 0, 1, height, 0);
-         fill(255);
-         stroke(255);
-         ellipse(x, y, 8, 8);
+function draw() {
+    background(51);
+    for (var i = 0; i < data.length; i++) {
+        var x = map(data[i].x, 0, 1, 0, width);
+        var y = map(data[i].y, 0, 1, height, 0);
+        fill(255);
+        stroke(255);
+        ellipse(x, y, 8, 8);
     }
 
     if (data.length > 1) {
-      gradientDescent();
-      drawLine();
+        gradientDescent();
+        drawLine();
     }
 }
